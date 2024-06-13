@@ -1,0 +1,34 @@
+<h1>Employee Details</h1>
+
+<p-table [value]="employees" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Employee Id</th>
+      <th>Education</th>
+      <th>Joining Year</th>
+      <th>City</th>
+      <th>Payment Tier</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Ever Benched</th>
+      <th>Experience in Current Domain</th>
+      <th>Leave or Not</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-employee>
+    <tr>
+      <td>{{employee.emplId}}</td>
+      <td>{{ employee.education }}</td>
+      <td>{{ employee.joiningYear }}</td>
+      <td>{{ employee.city }}</td>
+      <td>{{ employee.paymentTier }}</td>
+      <td>{{ employee.age }}</td>
+      <td>{{ employee.gender }}</td>
+      <td>{{ employee.everBenched }}</td>
+      <td>{{ employee.experienceInCurrentDomain }}</td>
+      <td>{{ employee.leaveOrNot }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>

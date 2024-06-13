@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+    <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="item.url" *ngFor="let item of navigationItems">{{item.text}}</a>
+        </mat-nav-list>
+    </mat-sidenav> -->
+     <mat-sidenav-content class="content-area">
+        <!-- <mat-toolbar color="primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <button type="button" aria-label="Full Screen" mat-icon-button>
+                <mat-icon aria-label="Full Screen" class="icon" nggtFullScreen>fullscreen</mat-icon>
+            </button>
+            <span class="example-spacer"></span>
+            <span>
+                <span>ng-generic-template</span>
+            </span>
+            <span class="example-spacer"></span>
+            <div>
+                <button mat-button>
+                    <mat-icon matBadge="5" matBadgeColor="warn">home</mat-icon>
+                </button>
+                <button mat-button [matMenuTriggerFor]="userMenu">
+                    <mat-icon class="icon">account_circle</mat-icon>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item (click)="gotoProfile()">Profile</button>
+                    <button mat-menu-item (click)="logout()">Logout</button>
+                </mat-menu>
+            </div>
+        </mat-toolbar> -->
+        <ng-content></ng-content>
+    </mat-sidenav-content> 
+    
+</mat-sidenav-container>
