@@ -5,6 +5,9 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +18,9 @@ import {TableModule} from 'primeng/table';
     DashboardRoutingModule,
     SecureSharedModule,
     PaginatorModule,
-    TableModule
+    TableModule,
+    ButtonModule,
+    VirtualScrollerModule
   ],
 })
 export class DashboardModule { }

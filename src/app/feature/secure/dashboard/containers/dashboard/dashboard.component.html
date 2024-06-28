@@ -1,18 +1,46 @@
 <h1>Employee Details</h1>
-
-<p-table [value]="employees" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+<p-table #dt1 [value]="allEmployees" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
+  [globalFilterFields]="['education','joiningYear','city','paymentTier','age','gender','everBenched','experienceInCurrentDomain','leaveOrNot']">
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <div class="flex-container">
+        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom" ></button>
+        &nbsp;
+        <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+        <span style="float: right;" class="p-input-icon-right search-bar">
+          <i class="pi pi-search"></i>
+          <input #globalFilterInput pInputText type="text" (input)="dt1.filterGlobal(globalFilterInput.value, 'contains')" placeholder="Search keyword" />
+        </span>
+      </div>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th>Employee Id</th>
-      <th>Education</th>
-      <th>Joining Year</th>
-      <th>City</th>
-      <th>Payment Tier</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Ever Benched</th>
-      <th>Experience in Current Domain</th>
-      <th>Leave or Not</th>
+      <th pSortableColumn="emplId" >Employee Id<p-sortIcon  field="emplId"></p-sortIcon></th>
+      <th pSortableColumn="education" >Education<p-sortIcon field="education"></p-sortIcon>
+        <p-columnFilter type="text" field="education" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="joiningYear" >Joining Year<p-sortIcon field="joiningYear"></p-sortIcon>
+        <p-columnFilter type="text" field="joiningYear" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="city" >City<p-sortIcon field="city"></p-sortIcon>
+        <p-columnFilter type="text" field="city" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="paymentTier" >Payment Tier<p-sortIcon field="paymentTier"></p-sortIcon>
+        <p-columnFilter type="text" field="paymentTier" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="age" >Age<p-sortIcon field="age"></p-sortIcon>
+        <p-columnFilter type="text" field="age" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="gender" >Gender<p-sortIcon field="gender"></p-sortIcon>
+        <p-columnFilter type="text" field="gender" display="menu"></p-columnFilter>
+      </th>
+      <th>Ever Benched<p-columnFilter type="text" field="everBenched" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="experienceInCurrentDomain" >Experience in Current Domain<p-sortIcon field="experienceInCurrentDomain"></p-sortIcon>
+        <p-columnFilter type="text" field="experienceInCurrentDomain" display="menu"></p-columnFilter>
+      </th>
+      <th pSortableColumn="leaveOrNot" >Leave or Not<p-sortIcon field="leaveOrNot"></p-sortIcon>
+        <p-columnFilter type="text" field="leaveOrNot" display="menu"></p-columnFilter></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-employee>
@@ -31,4 +59,80 @@
   </ng-template>
 </p-table>
 
-<p-paginator [rows]="rows" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>
+<p-paginator [rows]="rows" [totalRecords]="100000" [rowsPerPageOptions]="[100,500,1000,2000]"  (onPageChange)="paginate($event)"></p-paginator>
+
+
+ <!-- <h1>Employee Details</h1>
+
+<p-table #dt1 [value]="employees"  styleClass="p-datatable-gridlines" responsiveLayout="scroll"
+  [globalFilterFields]="['education','joiningYear','city','paymentTier','age','gender',
+  'everBenched','experienceInCurrentDomain','leaveOrNot']">
+  <p-virtualScroller  scrollHeight="500px" [itemSize]="30" [rows]="100"
+    [lazy]="true" (onLazyLoad)="loadCarsLazy($event)">  -->
+
+    <!-- <ng-template pTemplate="caption">
+      <div class="flex">
+        <div class="flex-container">
+          <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+          &nbsp;
+          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+          <span style="float: right;" class="p-input-icon-right search-bar">
+            <i class="pi pi-search"></i>
+            <input #globalFilterInput pInputText type="text" (input)="dt1.filterGlobal(globalFilterInput.value, 'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </div>
+    </ng-template> -->
+
+    <!-- <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="emplId">Employee Id<p-sortIcon field="emplId"></p-sortIcon></th>
+        <th pSortableColumn="education">Education<p-sortIcon field="education"></p-sortIcon>
+          <p-columnFilter type="text" field="education" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="joiningYear">Joining Year<p-sortIcon field="joiningYear"></p-sortIcon>
+          <p-columnFilter type="text" field="joiningYear" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="city">City<p-sortIcon field="city"></p-sortIcon>
+          <p-columnFilter type="text" field="city" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="paymentTier">Payment Tier<p-sortIcon field="paymentTier"></p-sortIcon>
+          <p-columnFilter type="text" field="paymentTier" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="age">Age<p-sortIcon field="age"></p-sortIcon>
+          <p-columnFilter type="text" field="age" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="gender">Gender<p-sortIcon field="gender"></p-sortIcon>
+          <p-columnFilter type="text" field="gender" display="menu"></p-columnFilter>
+        </th>
+        <th>Ever Benched<p-columnFilter type="text" field="everBenched" display="menu"></p-columnFilter></th>
+        <th pSortableColumn="experienceInCurrentDomain">Experience in Current Domain<p-sortIcon field="experienceInCurrentDomain"></p-sortIcon>
+          <p-columnFilter type="text" field="experienceInCurrentDomain" display="menu"></p-columnFilter>
+        </th>
+        <th pSortableColumn="leaveOrNot">Leave or Not<p-sortIcon field="leaveOrNot"></p-sortIcon>
+          <p-columnFilter type="text" field="leaveOrNot" display="menu"></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{employee.emplId}}</td>
+        <td>{{ employee.education }}</td>
+        <td>{{ employee.joiningYear }}</td>
+        <td>{{ employee.city }}</td>
+        <td>{{ employee.paymentTier }}</td>
+        <td>{{ employee.age }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>{{ employee.everBenched }}</td>
+        <td>{{ employee.experienceInCurrentDomain }}</td>
+        <td>{{ employee.leaveOrNot }}</td>
+      </tr>
+    </ng-template> -->
+  <!-- </p-virtualScroller> -->
+
+<!-- </p-table>
+
+
+
+<p-paginator [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="[100,500,1000,2000]" (onPageChange)="paginate($event)"></p-paginator> --> -->

@@ -10,9 +10,9 @@ export class DashboardService {
 
   constructor(private communicationService:CommunicationService) { }
 
-  get() {
+  get(size:number,num:number) {
     
-      return this.communicationService.get<any>(UserAPI.get(), null, null, false, false);
+      return this.communicationService.get<any>(UserAPI.get(size,num), null, null, false, false);
   }
 
 }
